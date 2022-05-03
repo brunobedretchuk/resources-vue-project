@@ -13,7 +13,9 @@
       </div>
     </div>
   </the-card>
-  <component :is="selectedTab"> </component>
+  <keep-alive>
+    <component :is="selectedTab"> </component>
+  </keep-alive>
 </template>
 
 <script>
@@ -46,13 +48,29 @@ export default {
   },
   provide() {
       return{
-          resources: this.storedResources
+          resources: this.storedResources,
+          addResource: this.addResource,
+          removeResource: this.removeResource
       }
   },
   methods: {
     setSelectedTab(tab) {
       this.selectedTab = tab;
     },
+    addResource(title , description , link){
+      let item = {
+        id: new Date().toISOString(),
+        title: title,
+        description: description,
+        link: link
+        }
+        this.storedResources.unshift(item);
+        this.selectedTab = 'stored-resources'
+    },
+    removeResource(resId){
+      let resIndex = this.storedResources.findIndex(res => res.id === resId);
+      this.storedResources.splice(resIndex , 1);
+    }
     
   },
   computed: {

@@ -28,6 +28,7 @@ export default {
     letter-spacing: 1px;
     border-radius: 5px;
     transition: .15s;
+    padding: 5px 10px;
 }
 .defaultButton:hover{
     background-color: orange;

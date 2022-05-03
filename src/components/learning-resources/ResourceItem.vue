@@ -4,7 +4,7 @@
     <div class="card-body d-flex flex-column">
       <div class="d-flex justify-content-between">
         <h5 class="card-title">{{ title }}</h5>
-        <base-button
+        <base-button @click="removeResource(id)"
         >Delete</base-button>
       </div>
       <p class="card-text">
@@ -26,10 +26,12 @@
 export default {
   name: "ResourceItem",
   props: {
+    id: String,
     title: String,
     description: String,
     link: String,
   },
+  inject: ['removeResource']
   
 };
 </script>
